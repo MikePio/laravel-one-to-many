@@ -18,6 +18,7 @@
       <tr class="">
         <th scope="col">#ID</th>
         <th scope="col">Name</th>
+        <th scope="col">Type</th>
         <th scope="col">Category</th>
         <th scope="col">Start date</th>
         <th scope="col">Produced for</th>
@@ -30,6 +31,7 @@
         <tr>
           <td>{{ $project->id }}</td>
           <td>{{ $project->name }}</td>
+          <td><span class="badge bg-primary">{{ $project->type?->name }}</span></td>
           <td>{{ $project->category }}</td>
           @php
             $date = date_create($project->start_date);

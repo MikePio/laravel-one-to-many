@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,6 +25,8 @@ class ProjectsTableSeeder extends Seeder
 
         $new_project = new Project();
 
+        //* foreign key
+        $new_project->type_id = Type::inRandomOrder()->first()->id; //Prende in modo random un id (/un numero) dalla tabella Type e lo assegna a type_id
         $new_project->name = $project['name'];
         $new_project->slug = Project::generateSlug($new_project->name);
         $new_project->description = $project['description'];
