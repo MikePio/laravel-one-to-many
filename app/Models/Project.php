@@ -26,6 +26,12 @@ class Project extends Model
     'image_original_name'
   ];
 
+  //* collegamento/relazione con la tabella type
+  public function type(){ // il nome della tabella in camelCase al singolare (type) perché ogni project ha un solo tipo
+    // belongsTo = Appartiene a
+    return $this->belongsTo(Type::class);
+  }
+
     //* funzione per generare uno slug univoco
   public static function generateSlug($str){
 

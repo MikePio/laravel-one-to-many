@@ -10,6 +10,12 @@ class Type extends Model
 {
     use HasFactory;
 
+  //* collegamento/relazione con la tabella projects
+  public function projects(){ // il nome della tabella in camelCase al plurale (projects) perché ogni ogni type ha più progetti
+    // ogni type ha più progetti
+    return $this->hasMany(Project::class);
+  }
+
     //* funzione per generare uno slug univoco
   public static function generateSlug($str){
 
