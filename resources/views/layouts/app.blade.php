@@ -14,6 +14,9 @@
     <link rel="icon" type="image/svg+xml" href="{{ Vite::asset('resources/img/laravel.png') }}"/>
     {{-- <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1969px-Laravel.svg.png"/> --}}
 
+    {{-- CK editor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 

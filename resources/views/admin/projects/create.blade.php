@@ -49,14 +49,14 @@
     @enderror
     <div class="mb-3">
         <label for="start_date" class="form-label">Start date</label>
-        <input type="text" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date" placeholder="YYYY-MM-DD" value="{{ old('start_date')}}">
+        <input type="date" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date" placeholder="YYYY-MM-DD" value="{{ old('start_date')}}">
     </div>
     @error('start_date')
     <p class="text-danger">{{ $message }}</p>
   @enderror
     <div class="mb-3">
         <label for="end_date" class="form-label">End date</label>
-        <input type="text" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date" placeholder="YYYY-MM-DD" value="{{ old('end_date')}}">
+        <input type="date" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date" placeholder="YYYY-MM-DD" value="{{ old('end_date')}}">
     </div>
     @error('end_date')
     <p class="text-danger">{{ $message }}</p>
@@ -92,5 +92,13 @@
   </form>
 
 </div>
+
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#description' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
 
 @endsection
