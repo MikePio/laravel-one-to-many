@@ -36,8 +36,8 @@
     <div class="mb-3">
         <label for="image" class="form-label">Image</label>
         <input onchange="showImagePreview(event)" type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
-        <img height="300px" class="mt-3 bg-white px-5" id="prev-img" src="{{ Vite::asset('resources\img\placeholder-img.png') }}" alt="">
-    </div>
+        {{-- <img height="300px" class="mt-3 bg-white px-5" id="prev-img" src="{{ Vite::asset('resources\img\placeholder-img.png') }}" alt=""> --}}
+        <img class="w-25 mt-3 bg-white px-5" id="prev-img" src="{{ Vite::asset('resources\img\placeholder-img.png') }}" alt="img">    </div>
     @error('image')
       <p class="text-danger">{{ $message }}</p>
     @enderror
