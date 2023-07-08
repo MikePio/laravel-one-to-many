@@ -30,8 +30,7 @@
 
   @endif
 
-  <form action="{{ route('adminprojects.update', $project) }}" method="POST">
-    {{-- //* token IMPORTANTE di verifica validità del form (viene utilizzato per dare una maggiore sicurezza ai dati) --}}
+  <form action="{{ route('adminprojects.update', $project) }}" method="POST" enctype="multipart/form-data">    {{-- //* token IMPORTANTE di verifica validità del form (viene utilizzato per dare una maggiore sicurezza ai dati) --}}
     @csrf
     {{--* aggiungere PUT perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
     @method('PUT')
@@ -45,10 +44,9 @@
     @enderror
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input onchange="showImagePreview(event)" type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image', $project?->image_original_name) }}">
-      {{-- <img height="300px" class="mt-3 bg-white {{ $project?->image_path ? "" : "px-5" }}" id="prev-img" src="{{ asset('storage/' . $project?->image_path) }}"  alt="{{ $project?->name }}"> --}}
-      <img class="w-25 mt-3 bg-white {{ $project->image_path ? '' : 'px-5' }}" id="prev-img" src="{{ $project->image_path ? asset('storage/' . $project->image_path) : Vite::asset('resources/img/placeholder-img.png') }}" alt="{{ $project->image_path == false ? "No image" : $project->name }}">
-    </div>
+      {{-- <input onchange="showImagePreview(event)" type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image', $project?->image_original_name) }}"> --}}
+      <input onchange="showImagePreview(event)" type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" >      {{-- <img height="300px" class="mt-3 bg-white {{ $project?->image_path ? "" : "px-5" }}" id="prev-img" src="{{ asset('storage/' . $project?->image_path) }}"  alt="{{ $project?->name }}"> --}}
+      <img class="w-25 mt-3 bg-white {{ $project?->image_path ? '' : 'px-5' }}" id="prev-img" src="{{ $project?->image_path ? asset('storage/' . $project?->image_path) : Vite::asset('resources/img/placeholder-img.png') }}" alt="{{ $project?->image_path == false ? "No image" : $project?->name }}">    </div>
     @error('image')
       <p class="text-danger">{{ $message }}</p>
     @enderror

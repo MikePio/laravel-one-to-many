@@ -30,6 +30,8 @@ class ProjectRequest extends FormRequest
         return [
           'name' => 'required|min:2|max:50',
           // 'description' => ''
+          // non necessario
+          'image' => 'nullable',
           'category' => 'required|min:2|max:255',
           'start_date' => 'date',
           'end_date' => 'date|after:start_date',
@@ -44,8 +46,6 @@ class ProjectRequest extends FormRequest
           'name.required' => 'The name field is required',
           'name.min' => 'The name must be at least :min characters',
           'name.max' => 'The name must not exceed :max characters',
-
-          // 'image.required' => 'The image field is required',
 
           'category.required' => 'The category field is required',
           'category.min' => 'The category field must be at least :min characters',

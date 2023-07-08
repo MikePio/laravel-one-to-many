@@ -186,7 +186,8 @@ public function store(ProjectRequest $request)
      * @return \Illuminate\Http\Response
      */
     //* bisogna aggiungere "Project $project" in modo da ottenere gli errori scritti nella request in store() (per create.blade.php)
-    public function update(Request $request, Project $project)
+    // public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
       //* prendo tutti i dati fillable salvati in request
       $form_data = $request->all();
@@ -200,6 +201,24 @@ public function store(ProjectRequest $request)
         $form_data['slug'] = $project->slug;
       }
 
+      //* edit per l'IMMAGINE
+      // verificare se è stata caricata un immagine (dal campo di input nel form)
+      if(array_key_exists('image', $form_data)){
+
+        //* se l'immagine esiste (NEL DB) vuol dire che ne ho caricata una nuova e quindi ELIMINO quella precedente
+        if($project->image_path){
+          // se è presente sul disco in public ed elimina l'immagine già presente
+          Storage::disk('public')->delete($project->image_path);
+        }
+
+        //* (MIGLIORE) soluzione PER CARICARE UN IMMAGINE mantendo lo stesso nome
+        // prima di salvare l'immagine salvo il nome
+        $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
+        // salvo l'immagine nella cartella uploads (public\storage\uploads) e in $form_data['image_path'] salvo il percorso //! il nome originale viene salvato nel db ma nel percorso del db e nella cartella uploads non viene salvato il nome originale
+        $form_data['image_path'] = Storage::put('uploads', $form_data['image']);
+
+      }
+
       //* aggiorno i dati
       $project->update($form_data);
 
@@ -211,7 +230,11 @@ public function store(ProjectRequest $request)
       $end_date = date_create($project->end_date);
       $end_date_formatted = date_format($end_date, 'd/m/Y');
 
-      return view('admin.projects.show', compact('project', 'start_date_formatted', 'end_date_formatted'));
+      // return view('admin.projects.show', compact('project', 'start_date_formatted', 'end_date_formatted'));
+      // oppure
+      // return redirect()->route('adminprojects.show', $project);
+      // oppure
+      return redirect()->route('adminprojects.show', compact('project', 'start_date_formatted', 'end_date_formatted'));
     }
 
     /**
