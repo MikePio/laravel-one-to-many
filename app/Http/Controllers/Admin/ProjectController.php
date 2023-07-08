@@ -245,6 +245,12 @@ public function store(ProjectRequest $request)
      */
     public function destroy(Project $project)
     {
+
+      //* se il project da eliminare contiene un immagine, quest'ultima deve essere cancellata anche nella cartella
+      if($project->image_path){
+        Storage::disk('public')->delete($project->image_path);
+      }
+
       //* eliminazione progetto
       $project->delete();
 

@@ -15,7 +15,7 @@
       @csrf
       {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
       @method('DELETE')
-      <button type="submit" class="btn btn-danger"><i class="fa-solid fa-eraser"></i></a>
+      <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
     </form>
   </h1>
 
