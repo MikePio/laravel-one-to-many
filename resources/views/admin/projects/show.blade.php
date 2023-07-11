@@ -6,18 +6,23 @@
 <div class="container overflow-auto p-5 d-flex flex-column align-items-center" style="max-height: calc(100vh - 70.24px);">
 
   {{-- @dump($project); --}}
-  <h1 class="py-4">{{ $project->name }}
-    {{--* button per EDIT (modificare il singolo progetto) --}}
-    <a href="{{ route('adminprojects.edit', $project) }}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+  <div class="d-flex  align-items-center">
+    <h1 class="py-4 me-3">{{ $project->name }}
 
-    {{--* button per DELETE (eliminare il singolo progetto) --}}
-    <form action="{{ route('adminprojects.destroy', $project) }}" method="POST" class="d-inline" onsubmit="return confirm('Confirm deletion of the project: {{ $project->name }} ?')">
-      @csrf
-      {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
-      @method('DELETE')
-      <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-    </form>
-  </h1>
+      <!-- {{--! QUESTO BLOCCO DI CODICE è STATO SOSTITUITO DA UN PARTIAL (form-delete.blade.php)   --}}
+      {{--* button per DELETE (eliminare il singolo progetto) --}}
+      <form action="{{ route('adminprojects.destroy', $project) }}" method="POST" class="d-inline" onsubmit="return confirm('Confirm deletion of the project: {{ $project->name }} ?')">
+        @csrf
+        {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+        </form>
+      -->
+    </h1>
+    {{--* button per EDIT (modificare il singolo progetto) --}}
+    <a href="{{ route('adminprojects.edit', $project) }}" class="btn btn-primary me-2"><i class="fa-solid fa-pencil"></i></a>
+    @include('admin.partials.form-delete')
+  </div>
 
   <img src="{{ $project->image_path ? asset('storage/' . $project->image_path) : Vite::asset('resources/img/placeholder-img.png') }}" class="py-2 w-25" alt="{{ $project->image_path == false ? "No image" : $project->name }}">  <h5 class="py-2"><strong class="text-decoration-underline">Id:</strong> {{ $project->id }}</h5>
   <h5 class="py-2"><strong class="text-decoration-underline">Slug:</strong> {{ $project->slug }}</h5>

@@ -48,6 +48,7 @@
             {{--* button per EDIT (modificare il singolo progetto) --}}
             <a href="{{ route('adminprojects.edit', $project) }}" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
 
+          <!-- {{--! QUESTO BLOCCO DI CODICE è STATO SOSTITUITO DA UN PARTIAL (form-delete.blade.php)   --}}
             {{--* button per DELETE (eliminare il singolo progetto) --}}
             <form action="{{ route('adminprojects.destroy', $project) }}" method="POST" class="d-inline" onsubmit="return confirm('Confirm deletion of the project: {{ $project->name }} ?')">
               @csrf
@@ -55,6 +56,8 @@
               @method('DELETE')
               <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
             </form>
+          -->
+          @include('admin.partials.form-delete')
 
           </td>
         </tr>
