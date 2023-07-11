@@ -20,19 +20,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])
-    //! SBAGLIATO rotte senza punto
+    //! SBAGLIATO rotte senza punto (ORMAI RESTA SBAGLIATO IN QUESTO PROGETTO)
     ->name('admin')
     //* CORRETTO rotte con il punto
     // ->name('admin.')
     ->prefix('admin')
     ->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::resource('projects', ProjectController::class);
     });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

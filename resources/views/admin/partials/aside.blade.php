@@ -10,8 +10,7 @@
         </a>
       </li>
       <li>
-          <a href="#" class="nav-link text-white {{ Request::is('admin/dashboard') ? 'active' : '' }}">
-          <svg class="bi me-2" width="16" height="16"></svg>
+        <a href="{{ route('admindashboard') }}" class="nav-link text-white {{ Request::is('admin/dashboard') ? 'active' : '' }}">          <svg class="bi me-2" width="16" height="16"></svg>
           <i class="fa-solid fa-chart-line"></i> Dashboard
         </a>
       </li>
