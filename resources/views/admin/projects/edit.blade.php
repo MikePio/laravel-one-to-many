@@ -3,20 +3,22 @@
 @section('content')
 
 
-<div class="d-flex align-items-center">
-  <h1 class="me-3" >Edit Project: {{ $project->name }}
-      <!-- {{--! QUESTO BLOCCO DI CODICE è STATO SOSTITUITO DA UN PARTIAL (form-delete.blade.php)   --}}
-      {{--* button per DELETE (eliminare il singolo progetto) --}}
-      <form action="{{ route('adminprojects.destroy', $project) }}" method="POST" class="d-inline" onsubmit="return confirm('Confirm deletion of the project: {{ $project->name }} ?')">
-        @csrf
-        {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-      </form>
-    -->
-  </h1>
-  @include('admin.partials.form-delete')
-</div>
+<div class="container overflow-auto p-5 d-flex flex-column align-items-center" style="max-height: calc(100vh - 70.24px);">
+
+  <div class="d-flex align-items-center">
+    <h1 class="me-3" >Edit Project: {{ $project->name }}
+        <!-- {{--! QUESTO BLOCCO DI CODICE è STATO SOSTITUITO DA UN PARTIAL (form-delete.blade.php)   --}}
+        {{--* button per DELETE (eliminare il singolo progetto) --}}
+        <form action="{{ route('adminprojects.destroy', $project) }}" method="POST" class="d-inline" onsubmit="return confirm('Confirm deletion of the project: {{ $project->name }} ?')">
+          @csrf
+          {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+        </form>
+      -->
+    </h1>
+    @include('admin.partials.form-delete')
+  </div>
 
   {{-- {{ $errors }} --}}
   {{-- se $errors->any() è true ci sono degli errori nella sessione  --}}
