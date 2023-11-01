@@ -26,6 +26,12 @@
           <i class="fa-solid fa-plus"></i> New Project
         </a>
       </li>
+      <li>
+        <a href="{{ route('admintypes.index') }}" class="nav-link text-white {{ Request::is('admin/projects/create') ? 'active' : '' }}">
+          <svg class="bi me-2" width="16" height="16"></svg>
+          <i class="fa-solid fa-list-ul"></i> Types
+        </a>
+      </li>
     </ul>
   <hr>
     <div class="dropdown d-flex flex-column justify-content-end">
