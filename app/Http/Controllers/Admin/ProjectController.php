@@ -178,7 +178,8 @@ public function store(ProjectRequest $request)
      */
     public function edit(Project $project)
     {
-      return view('admin.projects.edit', compact('project'));
+      $types = Type::all();
+      return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**

@@ -44,6 +44,18 @@
         <label for="name" class="form-label">Name</label>
         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Name Project" value="{{ old('name', $project?->name)}}">
     </div>
+    <div class="mb-3" style="width: 150vh; max-width: 73vw;">
+      <label for="name" class="form-label">Types</label>
+      <select class="form-select" name="type_id">
+        <option value="" selected>Select a type</option>
+        @foreach ($types as $type)
+          {{-- senza old --}}
+          {{-- <option value="{{ $type->id }}">{{ $type->name }}</option> --}}
+          {{-- con old --}}
+          <option value="{{ $type->id }}" @if($type->id == old('type_id', $project->type?->id)) selected @endif>{{ $type->name }}</option>
+        @endforeach
+      </select>
+    </div>
     @error('name')
       <p class="text-danger">{{ $message }}</p>
     @enderror
