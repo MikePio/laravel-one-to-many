@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 // importo la tabella Type
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -76,9 +77,18 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type $type)
     {
-        //
+      $val_data = $request->validate(
+        ['name' => 'required|unique:types|max:50']
+      );
+
+      $val_data['slug'] = Str::slug($val_data['name']);
+
+      $type->update($val_data);
+
+      // redirect per ritornare indietro con un messaggio
+      return redirect()->back()->with('message', "Type $type->name updated successfully");
     }
 
     /**

@@ -6,6 +6,13 @@
 
 <h1 class="py-4">Types</h1>
 
+
+@if (session('message'))
+  <div class="alert alert-success" role="alert">
+    {{ session('message') }}
+  </div>
+@endif
+
 <p class="text-center fs-6">On this page, you can add a type, edit a type name and/or delete a type. <br>Remember to save the edited type name.</p>
 
 <div class="input-group mb-3">
@@ -27,12 +34,18 @@
 
       <tr>
         <td>{{ $type->id }}</td>
-        <td><input class="border-0" type="text" value="{{ $type->name }}"></td>
+        <td>
+          <form action="{{ route('admintypes.update', $type) }}" method="POST" id="edit_form">
+            @csrf
+            @method('PUT')
+            <input name="name" class="border-0" type="text" value="{{ $type->name }}">
+          </form>
+        </td>
         <td>{{ count($type->projects) }}</td>
 
         <td>
           {{--* button per salvare l'EDIT (la modifica del singolo type) --}}
-          <a href="" class="btn btn-primary" onclick="return confirm('Confirm the edit of this type: {{ $type->name }} ?')"><i class="fa-solid fa-floppy-disk"></i></a>
+          <button onclick="submitEditForm()" class="btn btn-primary" onclick="return confirm('Confirm the edit of this type: {{ $type->name }} ?')"><i class="fa-solid fa-floppy-disk"></i></button>
 
           {{--* button per DELETE (eliminare il singolo type) --}}
           <form action="" method="POST" class="d-inline" onsubmit="return confirm('Confirm deletion of this type: {{ $type->name }} ?')">
@@ -55,5 +68,12 @@
 </div>
 
 </div>
+
+<script>
+  function submitEditForm(){
+    const form = document.getElementById('edit_form');
+    form.submit();
+  }
+</script>
 
 @endsection

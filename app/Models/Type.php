@@ -10,6 +10,8 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','slug'];
+
   //* collegamento/relazione con la tabella projects
   public function projects(){ // il nome della tabella in camelCase al plurale (projects) perché ogni ogni type ha più progetti
     // ogni type ha più progetti
