@@ -14,6 +14,7 @@ class Project extends Model
     //* array utilizzato per centralizzare i campi della tabella in modo da rendere più leggibile store() in PageController.php (per creare un nuovo progetto)
   protected $fillable = [
     'name',
+    'type_id',
     'slug',
     'description',
     'category',

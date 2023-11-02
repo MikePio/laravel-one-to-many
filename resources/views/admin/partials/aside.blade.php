@@ -27,7 +27,7 @@
         </a>
       </li>
       <li>
-        <a href="{{ route('admintypes.index') }}" class="nav-link text-white {{ Request::is('admin/projects/create') ? 'active' : '' }}">
+        <a href="{{ route('admintypes.index') }}" class="nav-link text-white {{ Request::is('admin/types') ? 'active' : '' }}">
           <svg class="bi me-2" width="16" height="16"></svg>
           <i class="fa-solid fa-list-ul"></i> Types
         </a>

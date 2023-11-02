@@ -33,6 +33,18 @@
     @error('name')
       <p class="text-danger">{{ $message }}</p>
     @enderror
+    <div class="mb-3" style="width: 150vh; max-width: 73vw;">
+        <label for="name" class="form-label">Types</label>
+        <select class="form-select" name="type_id">
+          <option value="" selected>Select a type</option>
+          @foreach ($types as $type)
+            {{-- senza old --}}
+            {{-- <option value="{{ $type->id }}">{{ $type->name }}</option> --}}
+            {{-- con old --}}
+            <option value="{{ $type->id }}" @if($type->id == old('type_id')) selected @endif>{{ $type->name }}</option>
+          @endforeach
+        </select>
+      </div>
     <div class="mb-3" style="width: 150vh; max-width: 73vw;">        <label for="image" class="form-label">Image</label>
         <input onchange="showImagePreview(event)" type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
         {{-- <img height="300px" class="mt-3 bg-white px-5" id="prev-img" src="{{ Vite::asset('resources\img\placeholder-img.png') }}" alt=""> --}}

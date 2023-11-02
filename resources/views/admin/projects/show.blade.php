@@ -25,6 +25,7 @@
   </div>
 
   <img src="{{ $project->image_path ? asset('storage/' . $project->image_path) : Vite::asset('resources/img/placeholder-img.png') }}" class="py-2 w-25" alt="{{ $project->image_path == false ? "No image" : $project->name }}">  <h5 class="py-2"><strong class="text-decoration-underline">Id:</strong> {{ $project->id }}</h5>
+  <h5 class="py-2"><strong class="text-decoration-underline">Type:</strong><span class="badge bg-primary mx-2">{{ $project->type?->name }}</span></h5>
   <h5 class="py-2"><strong class="text-decoration-underline">Slug:</strong> {{ $project->slug }}</h5>
   <p class="py-2"><strong class="text-decoration-underline">Description:</strong> {!! $project->description !!}</p>
   <h6 class="py-2"><strong class="text-decoration-underline">Category:</strong> {{ $project->category }}</h6>
