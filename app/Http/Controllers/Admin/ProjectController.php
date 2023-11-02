@@ -24,16 +24,20 @@ class ProjectController extends Controller
     {
       //* vengono mostrati tutti progetti in una volta
       // $projects = Project::all();
-      //* vengono mostrati 10 progetti alla volta (per far ciò è necessario importare bootstrap in AppServiceProvider)
-      // $projects = Project::paginate(10);
-      $projects = Project::paginate(2);
+      //* vengono mostrati 8 progetti alla volta (per far ciò è necessario importare bootstrap in AppServiceProvider)
+      $projects = Project::paginate(8);
+      // $projects = Project::paginate(2);
 
 
       return view('admin.projects.index', compact('projects'));
     }
 
     public function typeProjects(){
-      $types = Type::all();
+      //* vengono mostrati tutti tipi in una volta
+      // $types = Type::all();
+      //* vengono mostrati 8 tipi alla volta (per far ciò è necessario importare bootstrap in AppServiceProvider)
+      $types = Type::paginate(8);
+      // $types = Type::paginate(2);
 
       return view('admin.projects.type-projects', compact('types'));
     }
