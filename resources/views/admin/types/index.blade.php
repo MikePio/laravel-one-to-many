@@ -15,10 +15,13 @@
 
 <p class="text-center fs-6">On this page, you can add a type, edit a type name and/or delete a type. <br>Remember to save the edited type name.</p>
 
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Enter a type name" aria-label="Enter a type name">
-  <button class="btn btn-primary" type="button">Add Type</button>
-</div>
+<form action="{{ route('admintypes.store') }}" method="POST">
+  <div class="input-group mb-3">
+    @csrf
+    <input name="name" type="text" class="form-control" placeholder="Enter a type name" aria-label="Enter a type name">
+    <button class="btn btn-primary" type="submit">Add Type</button>
+  </div>
+</form>
 
 <table class="table table-hover">
   <thead class="thead-dark">
