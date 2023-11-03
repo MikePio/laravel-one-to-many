@@ -113,6 +113,9 @@
         <label for="description" class="form-label">Description</label>
         <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Description" style="height: 200px;">{{ old('description', $project?->description)}}</textarea>
     </div>
+    @error('description')
+    <p class="text-danger">{{ $message }}</p>
+  @enderror
 
     <button type="submit" class="btn btn-primary mt-3">Submit</button>
 
