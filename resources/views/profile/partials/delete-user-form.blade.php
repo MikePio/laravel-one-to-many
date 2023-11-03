@@ -32,7 +32,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Undo</button>
 
                     <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
                         @csrf

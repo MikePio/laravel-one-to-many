@@ -28,7 +28,7 @@
     <tr class="">
       <th scope="col">#ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Number of types</th>
+      <th scope="col">Number of projects</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -52,35 +52,39 @@
           </form>
 
           {{--* button per DELETE (eliminare il singolo type) --}}
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#type{{ $type->id }}" title="Delete type">
-  {{-- OPPURE --}}
-  {{-- <button type="button" class="btn btn-danger d-inline" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Delete type" style="padding: 6px 12px; width: 42px; height: 38px; display: inline-block;"> --}}
-    <i class = "fa-solid fa-trash d-inline"></i>
-  </button>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#type{{ $type->id }}" title="Delete type">
+          {{-- OPPURE --}}
+          {{-- <button type="button" class="btn btn-danger d-inline" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Delete type" style="padding: 6px 12px; width: 42px; height: 38px; display: inline-block;"> --}}
+            <i class = "fa-solid fa-trash d-inline"></i>
+          </button>
 
-  <!-- Modal -->
-  <div class="modal fade text-black" id="type{{ $type->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  {{-- OPPURE --}}
-  {{-- <div class="modal fade text-black" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> --}}
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete type "<strong>{{ $type->name }}</strong>"</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete this type?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          {{--* button per DELETE (eliminare il singolo type) --}}
-          <form action = "{{ route('admintypes.destroy', $type) }}" method = "POST" class="d-inline">
-            @csrf
-            {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
-            @method('DELETE')
-            <button type = "submit" class = "btn btn-danger" title="Delete type">Delete</a>
-          </form>
+          <!-- Modal -->
+          <div class="modal fade text-black" id="type{{ $type->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          {{-- OPPURE --}}
+          {{-- <div class="modal fade text-black" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> --}}
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete type "<strong>{{ $type->name }}</strong>"</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete this type?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" title="Return back">Undo</button>
+                  {{--* button per DELETE (eliminare il singolo type) --}}
+                  <form action = "{{ route('admintypes.destroy', $type) }}" method = "POST" class="d-inline">
+                    @csrf
+                    {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
+                    @method('DELETE')
+                    <button type = "submit" class = "btn btn-danger" title="Delete type">Delete</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+
         </td>
       </tr>
 

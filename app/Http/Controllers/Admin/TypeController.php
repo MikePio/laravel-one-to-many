@@ -56,7 +56,7 @@ class TypeController extends Controller
       $new_type->save();
 
       // redirect per ritornare indietro con un messaggio
-      return redirect()->back()->with('message', "Type $new_type->name creata");
+      return redirect()->back()->with('message', "Type $new_type->name created");
     }
 
     /**
