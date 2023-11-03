@@ -38,17 +38,18 @@
       <tr>
         <td>{{ $type->id }}</td>
         <td>
-          <form action="{{ route('admintypes.update', $type) }}" method="POST" id="edit_form">
+          <form action="{{ route('admintypes.update', $type) }}" method="POST">
             @csrf
             @method('PUT')
             <input name="name" class="border-0" type="text" value="{{ $type->name }}">
-          </form>
-        </td>
-        <td>{{ count($type->projects) }}</td>
+            </td>
+            <td>{{ count($type->projects) }}</td>
 
-        <td>
-          {{--* button per salvare l'EDIT (la modifica del singolo type) --}}
-          <button title="Save and Update the Type" onclick="submitEditForm()" class="btn btn-primary" onclick="return confirm('Confirm the edit of this type: {{ $type->name }}?')"><i class="fa-solid fa-floppy-disk"></i></button>
+            <td>
+            {{--* button per salvare l'EDIT (la modifica del singolo type) --}}
+            <button type="submit" title="Save and Update the Type" class="btn btn-primary" onclick="return confirm('Confirm the edit of this type: {{ $type->name }}?')"><i class="fa-solid fa-floppy-disk"></i></button>
+          {{--* il form viene chiuso qui perché deve includere il button per fare il submit --}}
+          </form>
 
           {{--* button per DELETE (eliminare il singolo type) --}}
 <!-- Button trigger modal -->
@@ -73,7 +74,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          {{--* button per DELETE (eliminare il singolo progetto) --}}
+          {{--* button per DELETE (eliminare il singolo type) --}}
           <form action = "{{ route('admintypes.destroy', $type) }}" method = "POST" class="d-inline">
             @csrf
             {{--* aggiungere DELETE perchè non è possibile inserire PUT/PATCH nel method del form al posto di POST --}}
@@ -94,12 +95,5 @@
 </div>
 
 </div>
-
-<script>
-  function submitEditForm(){
-    const form = document.getElementById('edit_form');
-    form.submit();
-  }
-</script>
 
 @endsection
