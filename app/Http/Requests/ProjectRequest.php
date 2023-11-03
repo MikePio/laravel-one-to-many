@@ -29,7 +29,6 @@ class ProjectRequest extends FormRequest
     {
         return [
           'name' => 'required|min:2|max:50',
-          // 'description' => ''
           // non necessario
           'image' => 'nullable',
           'category' => 'required|min:2|max:255',
@@ -37,7 +36,8 @@ class ProjectRequest extends FormRequest
           'end_date' => 'date|after:start_date',
           'url' => 'required|min:4|max:255',
           'produced_for' => 'max:255',
-          'collaborators' => 'max:255'
+          'collaborators' => 'max:255',
+          'description' => 'required'
         ];
     }
 //* necessari per la soluzione 1 MIGLIORE -> public function store(ProjectRequest $request){
@@ -62,6 +62,8 @@ class ProjectRequest extends FormRequest
           'produced_for.max' => 'The produced for field must not exceed :max characters',
 
           'collaborators.max' => 'The collaborators field must not exceed :max characters',
+
+          'description.required' => 'The description field is required',
 
       ];
 
